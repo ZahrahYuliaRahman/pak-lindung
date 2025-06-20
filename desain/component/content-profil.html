@@ -1,0 +1,196 @@
+<header class="bg-warning text-dark py-4 shadow">
+    <div class="container text-center">
+        <h1 class="mb-0 fw-bold">Tentang Kampus</h1>
+        <p class="lead mb-0">PSDKU Politeknik Negeri Pontianak di Kabupaten Sukamara</p>
+    </div>
+</header>
+
+<main class="container my-5 ">
+    <section class="container my-5 text-center">
+
+        <div class="row mt-5">
+            <div class="col-md-6">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Statistik Mahasiswa Per-Program Studi</h5>
+                        <canvas id="prodiChart" width="400" height="300"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mt-4 mt-md-0">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Statistik Mahasiswa Per-Jenis Kelamin</h5>
+                        <canvas id="genderChart" width="400" height="300"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-md-6">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Statistik Mahasiswa Per-Angkatan (2023-2027)</h5>
+                        <canvas id="angkatanChart" width="400" height="300"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mt-4 mt-md-0">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Statistik Mahasiswa</h5>
+                        <canvas id="minatChart" width="400" height="300"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </section>
+</main>
+
+
+
+<?php include "component/dataDiagram.php"; ?>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const prodiLabels = <?= json_encode(array_keys($prodi)); ?>;
+    const prodiData = <?= json_encode(array_values($prodi)); ?>;
+
+    const genderLabels = <?= json_encode(array_keys($gender)); ?>;
+    const genderData = <?= json_encode(array_values($gender)); ?>;
+
+    const angkatanLabels = <?= json_encode(array_keys($angkatan)); ?>;
+    // const angkatanData = <?= json_encode(array_values($angkatan)); ?>;
+    const tiAngkatanData = <?php echo json_encode(array_values($angkatanTI)); ?>;
+    const aspAngkatanData = <?php echo json_encode(array_values($angkatanASP)); ?>;
+    const bdiAngkatanData = <?php echo json_encode(array_values($angkatanBDI)); ?>;
+
+
+    new Chart(document.getElementById('prodiChart'), {
+        type: 'bar',
+        data: {
+            labels: prodiLabels,
+            datasets: [{
+                label: 'Jumlah Mahasiswa Per Prodi',
+                data: prodiData,
+                backgroundColor: ['rgba(255, 0, 0, 0.7)', //merah
+                    'rgba(0, 128, 0, 0.7)', //hijau
+                    'rgba(30, 144, 255, 0.7)'//biru
+                ]
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: false
+                }
+            }
+        }
+    });
+
+    new Chart(document.getElementById('genderChart'), {
+        type: 'pie',
+        data: {
+            labels: genderLabels,
+            datasets: [{
+                label: 'Jumlah Mahasiswa Per Gender',
+                data: genderData,
+                backgroundColor: ['#36A2EB', '#FF6384']
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: true
+                }
+            }
+        }
+    });
+
+    new Chart(document.getElementById('angkatanChart'), {
+        type: 'line',
+        data: {
+            labels: angkatanLabels,
+            datasets: [{
+                label: 'Teknologi Informasi',
+                data: tiAngkatanData,
+                // borderColor: 'rgb(139, 0, 0)', //merah
+                borderColor: '#FF0000', //merah
+                backgroundColor: 'rgba(255, 0, 0, 0.1)',
+                fill: true
+            }, {
+                label: 'Akuntansi Sektor Publik',
+                data: aspAngkatanData,
+                // borderColor: 'rgb(0, 128, 0)', //hijau
+                borderColor: '#008000', //hijau
+                backgroundColor: 'rgba(0, 255, 0, 0.1)',
+                fill: true
+            }, {
+                label: 'Budidaya Ikan',
+                data: bdiAngkatanData,
+                borderColor: ['#1e90ff'], //biru
+                backgroundColor: 'rgba(0, 123, 255, 0.1)',
+                fill: true
+            },
+        ]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: true
+                }
+            }
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                title: {
+                    display: true,
+                    text: 'Jumlah Mahasiswa'
+                }
+            },
+            x: {
+                title: {
+                    display: true,
+                    text: 'Tahun Angkatan'
+                }
+            }
+        }
+    });
+</script>
+
+//
+<!-- <main class="container my-5">
+//     <section class="container my-5">
+//       <h2 class="h4 border-primary fw-bold mb-4 text-center">PSDKU Polnep Sukamara</h2>
+//       <p>
+//         <strong>Program Studi di Luar Kampus Utama Politeknik Negeri Pontianak di Kabupaten Sukamara</strong> 
+//         adalah bagian dari Politeknik Negeri Pontianak. 
+//         Berdiri untuk memperluas akses pendidikan vokasi di Kalimantan Tengah, kampus ini menjadi perguruan tinggi negeri pertama di Kabupaten Sukamara.
+//       </p>
+
+//     <div class="row mt-5">
+//         <div class="col-md-6">
+//             <div class="card border-0 shadow-sm">
+//                 <div class="card-body">
+//                     <h5 class="card-title">Visi dan Misi</h5>
+//                     <p class="card-text">Mewujudkan Mahasiswa yang berkompeten dan memiliki daya saing tinggi</p>
+//                 </div>
+//             </div>
+//         </div>
+//         <div class="col-md-6 mt-4 mt-md-0">
+//             <div class="card border-0 shadow-sm">
+//                 <div class="card-body">
+//                     <h5 class="card-title">Fasilitas</h5>
+//                     <p class="card-text">Mewujudkan pendidikan vokasi yang unggul, berdaya saing dan berkarakter di wilayah Kalimantan Tengah</p>
+//                 </div>
+//             </div>
+//         </div>
+//     </div>
+//         </section>
+//   </main> -->

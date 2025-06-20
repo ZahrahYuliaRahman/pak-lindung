@@ -1,0 +1,111 @@
+<header class="bg-warning text-dark py-4 shadow">
+    <div class="container text-center">
+      <h1 class="mb-0 fw-bold">Unduh File E-Book Di Sini</h1>
+      <p class="lead mb-0">Warna oleh Lindung Siswanto</p>
+    </div>
+</header>
+
+<main class="container my-5">
+    <div class="container mb-4 text-center">
+        <h2 class="mb-4">Menampilkan FIle PDF</h2>   
+            <div class="nav-buttons">
+                <button id="prev" class="btn btn-outline-primary">Kembali</button>
+                <span> Halaman <span id="page-num">1</span> dari <span id="page-count"> ? </span> </span>
+                <button id="next" class="btn btn-outline-primary">Selanjutnya</button>
+                <a href="pdf/06_Warna.pdf" onclick=window.print() class="btn btn-outline-success"> Print </a>
+                <a href="pdf/06_Warna.pdf" download class="btn btn-outline-warning"> Download </a>
+                <a href="pdf/06_Warna.pdf" find class="btn btn-outline-primary">Find </a>
+                <button onclick="showSearch()" class="btn btn-outline-primary">Search Halaman</button>
+                <!-- <div id="searchContainer" style="display: none; margin-top: 10px;"> -->
+                <input type="text" id="searchTerm" placeholder="Cari kata di halaman...">
+                <button onclick="searchPage()" class="btn btn-success btn-sm">Cari</button>
+                <button onclick="clearSearch()" class="btn btn-secondary btn-sm">Hapus</button>
+            </div> 
+    </div>
+    <div class=" text-center">       
+         <canvas id="pdf-canvas"></canvas>
+    </div>
+<script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
+
+<script>
+    const url = 'pdf/06_Warna.pdf';
+    let pdfDoc = null,
+        pageNum=1,
+        pageRendering=false,
+        pageNumPending=null,
+        scale=1,
+        canvas=document.getElementById('pdf-canvas'),
+        ctx=canvas.getContext('2d');
+    function renderPage(num) {      //nama function 'renderPage' boleh bebas, kecuali parameter => (num)
+        pageRendering = true;
+        pdfDoc.getPage(num).then(function(page) {
+            const viewport = page.getViewport({scale:scale});
+            canvas.height = viewport.height;
+            canvas.width = viewport.width;
+        
+            const renderContext = {canvasContext: ctx, viewport: viewport
+            };
+
+            const renderTask = page.render(renderContext);
+
+            renderTask.promise.then(function() {
+                pageRendering = false;
+                if(pageNumPending !== null) {
+                    renderPage(pageNumPending);
+                    pageNumPending=null;
+                }
+            });
+        });
+        document.getElementById('page-num').textContent = num;
+    }
+
+    function queueRenderPage(num) {
+        if(pageRendering) {
+            pageNumPending = num;
+        } else {
+            renderPage(num);
+        }
+    }
+
+    // function onPrevPage() {
+    //     if(pageNum <=1 ) return;      // ⛔ Cegah mundur di halaman pertama (1)
+    //     pageNum--;                  // ⬅ Kurangi nomor halaman
+    //     queueRenderPage(pageNum);    // 🔄 Minta render ulang halaman
+    // }
+
+    // function onNextPage() {
+    //     if (pageNum >= pdfDoc.numPages) return; // ⛔ Cegah melebihi total halaman
+    //     pageNum++;                          // ⬅ Tambahkan nomor halaman
+    //     queueRenderPage(pageNum);           // 🔄 Minta render ulang halaman
+    // }
+
+    function onPrevPage() {
+        if (pageNum <= 1) {
+            pageNum = pdfDoc.numPages; // 🔁 Kembali ke halaman terakhir
+        } else {
+            pageNum--; // ⬅ Mundur satu halaman
+        }
+        queueRenderPage(pageNum); // 🔄 Render halaman yang sesuai
+    }
+    
+    function onNextPage() {
+        if (pageNum >= pdfDoc.numPages){// ⛔ Cegah melebihi total halaman
+            pageNum = 1;
+        }else{
+            pageNum++;   // ⬅ Tambahkan nomor halaman
+        }queueRenderPage(pageNum);           // 🔄 Minta render ulang halaman
+    }
+
+    document.getElementById('prev').addEventListener('click', onPrevPage );
+    document.getElementById('next').addEventListener('click', onNextPage );
+
+
+    pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
+        pdfDoc=pdfDoc_;
+        document.getElementById('page-count').textContent=pdfDoc.numPages;
+        renderPage(pageNum)
+    });
+    
+
+</script>
+</main>

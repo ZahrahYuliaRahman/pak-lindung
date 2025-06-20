@@ -1,0 +1,37 @@
+<header class="bg-warning text-dark py-4 shadow">
+    <div class="container text-center">
+      <h1 class="mb-0 fw-bold">Selamat Datang</h1>
+      <p class="lead mb-0">PSDKU Politeknik Negeri Pontianak di Kabupaten Sukamara</p>
+    </div>
+</header>
+
+<!-- CSS DataTables -->
+<link rel="stylesheet" href="https://cdn.datatables.net/2.3.2/css/dataTables.dataTables.min.css">
+
+<!-- jQuery (wajib) -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<!-- JS DataTables -->
+<script src="https://cdn.datatables.net/2.3.2/js/dataTables.min.js"></script>
+<table id="myTable" class="display">
+  <thead>
+    <tr>
+      <th>Nama</th>
+      <th>Posisi</th>
+      <th>Kantor</th>
+      <th>Umur</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Airi Satou</td><td>Accountant</td><td>Tokyo</td><td>33</td></tr>
+    <tr><td>Angelica Ramos</td><td>CEO</td><td>London</td><td>47</td></tr>
+    <tr><td>Ashton Cox</td><td>Junior Tech Author</td><td>San Francisco</td><td>66</td></tr>
+    <!-- Tambahkan baris lain sesuai kebutuhan -->
+  </tbody>
+</table>
+
+<script>
+  $(document).ready(function () {
+    $('#myTable').DataTable();
+  });
+</script>

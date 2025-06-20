@@ -1,0 +1,87 @@
+<style>
+    .prodi-card {
+      padding: 30px;
+      color: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    .bg-ti   { background-color: #6f42c1; } /* Ungu untuk TI */
+    .bg-bi   { background-color: #198754; } /* Hijau untuk Budidaya Ikan */
+    .bg-ak   { background-color: #0d6efd; } /* Biru untuk Akuntansi */
+  </style>
+</head>
+<body>
+
+<div class="container my-5">
+  <h2 class="text-center mb-4">Program Studi</h2>
+
+  <div class="row g-4">
+
+    <!-- Teknologi Informasi -->
+    <div class="col-md-4">
+      <div class="prodi-card bg-ti text-center">
+        <h4>Diploma 3</h4>
+        <p class="fs-5">Teknologi Informasi</p>
+      </div>
+    </div>
+
+    <!-- Budidaya Ikan -->
+    <div class="col-md-4">
+      <div class="prodi-card bg-bi text-center">
+        <h4>Diploma 3</h4>
+        <p class="fs-5">Budidaya Ikan</p>
+      </div>
+    </div>
+
+    <!-- Akuntansi Sektor Publik -->
+    <div class="col-md-4">
+      <div class="prodi-card bg-ak text-center">
+        <h4>Diploma 4</h4>
+        <p class="fs-5">Akuntansi Sektor Publik</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<div class="container my-5">
+  <h2 class="text-center mb-4">Program Studi</h2>
+
+  <div id="carouselProdi" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner text-center">
+
+      <div class="carousel-item active">
+        <div class="p-5 bg-light rounded shadow">
+          <h4>Diploma 3</h4>
+          <p class="fs-5">Teknologi Informasi</p>
+        </div>
+      </div>
+
+      <div class="carousel-item">
+        <div class="p-5 bg-light rounded shadow">
+          <h4>Diploma 3</h4>
+          <p class="fs-5">Budidaya Ikan</p>
+        </div>
+      </div>
+
+      <div class="carousel-item">
+        <div class="p-5 bg-light rounded shadow">
+          <h4>Diploma 4</h4>
+          <p class="fs-5">Akuntansi Sektor Publik</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Tombol navigasi -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselProdi" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+      <span class="visually-hidden">Sebelumnya</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselProdi" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+      <span class="visually-hidden">Berikutnya</span>
+    </button>
+  </div>
+</div>

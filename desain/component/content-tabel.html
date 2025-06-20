@@ -1,0 +1,161 @@
+<header class="bg-warning text-dark py-4 shadow">
+    <div class="container text-center">
+        <h1 class="mb-0 fw-bold">Data Mahasiswa</h1>
+        <p class="lead mb-0">PSDKU Politeknik Negeri Pontianak di Kabupaten Sukamara</p>
+    </div>
+</header>
+
+<div class="container">
+    <h2 class="my-4 mb-4 text-center">Data Mahasiswa Teknologi Infromasi</h2>
+
+    <table id="mhsTable" class="table table-striped table-bordered">
+        <thead class="table-danger">
+            <tr>
+                <th>No</th>
+                <th>NIM</th>
+                <th>Nama</th>
+                <th>Program Studi</th>
+                <th>Semester/Kelas</th>
+                <th>Angkatan</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>3202339001</td>
+                <td>Ihlasya Amalia</td>
+                <td>Teknologi Informasi</td>
+                <td>4/A</td>
+                <td>2023</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>3202339002</td>
+                <td>Achmad Ansharullah</td>
+                <td>Teknologi Informasi</td>
+                <td>4/A</td>
+                <td>2023</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>3202339003</td>
+                <td>Muhammad Lintang Susanto</td>
+                <td>Teknologi Informasi</td>
+                <td>4/A</td>
+                <td>2023</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>3202339004</td>
+                <td>Ayuning Lita</td>
+                <td>Teknologi Informasi</td>
+                <td>4/A</td>
+                <td>2023</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>3202339005</td>
+                <td>Sulaiman Al Madani</td>
+                <td>Teknologi Informasi</td>
+                <td>4/A</td>
+                <td>2023</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>3202339006</td>
+                <td>Sahid Rahman Maulana</td>
+                <td>Teknologi Informasi</td>
+                <td>4/A</td>
+                <td>2023</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>3202339007</td>
+                <td>Nurul Diah Rahmadiah</td>
+                <td>Teknologi Informasi</td>
+                <td>4/A</td>
+                <td>2023</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>3202339008</td>
+                <td>Rayna Ade Sakira</td>
+                <td>Teknologi Informasi</td>
+                <td>4/A</td>
+                <td>2023</td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>3202339009</td>
+                <td>Zahrah Yulia Rahman</td>
+                <td>Teknologi Informasi</td>
+                <td>4/A</td>
+                <td>2023</td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td>3202339010</td>
+                <td>Mahfuzah</td>
+                <td>Teknologi Informasi</td>
+                <td>4/A</td>
+                <td>2023</td>
+            </tr>
+            <tr>
+                <td>11</td>
+                <td>3202339011</td>
+                <td>Pica</td>
+                <td>Teknologi Informasi</td>
+                <td>4/A</td>
+                <td>2023</td>
+            </tr>
+            <tr>
+                <td>12</td>
+                <td>3202339012</td>
+                <td>M. Ridhoni</td>
+                <td>Teknologi Informasi</td>
+                <td>4/A</td>
+                <td>2023</td>
+            </tr>
+            <tr>
+                <td>13</td>
+                <td>3202339013</td>
+                <td>Refi Yanda</td>
+                <td>Teknologi Informasi</td>
+                <td>4/A</td>
+                <td>2023</td>
+            </tr>
+            <tr>
+                <td>14</td>
+                <td>3202339014</td>
+                <td>Zia Novita</td>
+                <td>Teknologi Informasi</td>
+                <td>4/A</td>
+                <td>2023</td>
+            </tr>
+            <tr>
+                <td>15</td>
+                <td>3202339015</td>
+                <td>Ahmad Nursabandi</td>
+                <td>Teknologi Informasi</td>
+                <td>4/A</td>
+                <td>2023</td>
+            </tr>
+
+            <!-- Tambahkan baris lain sesuai kebutuhan -->
+        </tbody>
+    </table>
+</div>
+
+<!-- CSS DataTables -->
+<link rel="stylesheet" href="https://cdn.datatables.net/2.3.2/css/dataTables.dataTables.min.css">
+
+<!-- jQuery (wajib) -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<!-- JS DataTables -->
+<script src="https://cdn.datatables.net/2.3.2/js/dataTables.min.js"></script>
+<!-- <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script> -->
+<script>
+    $(document).ready(function() {
+        $('#mhsTable').DataTable();
+    });
+</script>
